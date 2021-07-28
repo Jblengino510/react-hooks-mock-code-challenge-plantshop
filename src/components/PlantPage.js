@@ -9,6 +9,11 @@ function PlantPage() {
   const [ plants, setPlants ] = useState([])
   const [ search, setSearch ] = useState("")
 
+  function handleAddPlant(newPlant){
+    const updatedPlants = [...plants, newPlant]
+    setPlants(updatedPlants)
+  }
+
 
   useEffect(() => {
     fetch(plantUrl)
@@ -22,8 +27,8 @@ function PlantPage() {
   
   return (
     <main>
-      <NewPlantForm />
-      <Search setSearch={setSearch}/>
+      <NewPlantForm onAddPlant={handleAddPlant}/>
+      <Search search={search} setSearch={setSearch}/>
       <PlantList plants={searchedPlants}/>
     </main>
   );
